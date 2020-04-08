@@ -186,3 +186,35 @@ char* s_to_string_stats_save(){
 #endif
         return str;
 }
+
+void s_update(STUDENT* p, char* num,  char a, int s){
+	strcpy(p->number, num);
+	p->assignment=a;
+	p->score=s;
+}
+
+void s_sort_by_name(STUDENT* a[]){
+        STUDENT* temp;
+        int c=0,idx;
+        for(int i=0;i<MAX_STUDENTS;i++){
+                if(students[i]!=NULL){
+                        a[c]=students[i];
+                        c++;
+                }
+        }
+
+        for(int i=0;i<c-1;i++){
+		idx=i;
+                for(int j=i;j<c;j++){
+                        if(strcmp(a[idx]->name,a[j]->name)>0){
+				idx=j;
+                        }
+                }
+	                
+        temp=a[i];
+        a[i]=a[idx];
+        a[idx]=temp;
+        }
+}
+
+

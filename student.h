@@ -29,4 +29,6 @@ int s_get_all_by_number(STUDENT* a[], char* n); //학번 앞자리 3자리가 �
 char* s_to_string_save(STUDENT* p); //특정 학생의 정보를 파일 저장용 문자열로 가져오기
 char* s_to_string_stats_save(); //과제 제출 통계를 보고서 파일 저장용 문자열로 가져오기
 int s_get_submitStudent(STUDENT* a[]);// 과제 제출 학생 배열 만들고 제출 학생수 리턴
+void s_update(STUDENT* p, char* num,  char a, int s);  // 특정 학생의 정보 업데이트
+void s_sort_by_name(STUDENT* a[]); //학생 레코드를 이름으로 정렬한다.
 

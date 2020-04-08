@@ -13,13 +13,14 @@ void load_file();
 void save_file();
 void print_stats();
 void save_reportFile();
-
+void update_record();
+void sort_record_by_name();
 
 int main(){
         s_init();
         int menu;
         while(1){
-                printf("\nMenu : 1.Create 2.Read 3.list of submit student 6.List 7.Search(student number) 9.load 10.save 12.stats 13.save(report file)  0.Quit > ");
+                printf("\nMenu : 1.Create 2.Read 3.list of submit student 4.Update 6.List 7.Search(student number) 8.Sort(by name) 9.load 10.save 12.stats 13.save(report file)  0.Quit > ");
                 scanf("%d", &menu);
                 printf("\n");
                 switch(menu){
@@ -32,12 +33,17 @@ int main(){
                 case 3:
                         read_submitRecord();
                         break;
+		case 4:
+			update_record();
+			break;
                 case 6:
                         list_record();
                         break;
                 case 7:
                         search_record_by_number();
                         break;
+		case 8: sort_record_by_name();
+			break;
                 case 9: load_file();
                         break;
                 case 10: save_file();
@@ -193,4 +199,37 @@ void save_reportFile(){
         fclose(f);
 
 }
+void update_record(){
+	char name[20], number[20], assignment;
+	int score;
+	printf("Enter a name> ");
+	scanf("%s" , name);
 
+	STUDENT *p=s_search_by_name(name);
+	if(p){
+		printf("Enter a updated info.\n");
+		printf("number > ");
+		scanf("%s",number);
+		printf("assignment submit (Y / N) > ");
+		scanf(" %c", &assignment);
+		printf("score > ");
+		scanf("%d", &score);
+		
+		s_update(p, number, assignment, score);
+
+	}else{
+		printf("No such member!\n");
+	}
+
+
+}
+void sort_record_by_name(STUDENT* p){
+        printf("Sorted records\n");
+        int size=s_count();
+        STUDENT* records[MAX_STUDENTS];
+        s_sort_by_name(records);
+        for(int i=0;i<size;i++){
+                STUDENT* p=records[i];
+                printf("%d. %s\n",i+1,s_to_string(p));
+        }
+}
