@@ -1,4 +1,4 @@
-//약간의 수정+++ 
+
 #include "student.h"
 
 #ifndef DEBUG
