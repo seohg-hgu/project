@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//약간의 수정+++ 
+>>>>>>> f210f9cadce55efc1289e139fd55d8f8ebfd1001
 #include "student.h"
 
 #ifndef DEBUG
