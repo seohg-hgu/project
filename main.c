@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-//약간의 수정+++ 
->>>>>>> f210f9cadce55efc1289e139fd55d8f8ebfd1001
-=======
-
->>>>>>> 0f0f2d6ded5021efb38f45cc37d3b5480db75707
 #include "student.h"
 
 #ifndef DEBUG
@@ -211,6 +203,15 @@ void save_reportFile(){
 
 }
 void update_record(){
+
+        printf("students who didn't submit assignments.\n");
+        int size = s_count();
+        STUDENT* records[MAX_STUDENTS];
+        s_get_all(records);
+        for(int i=0;i<size;i++){
+                STUDENT* p = records[i];
+		if(p->assignment=='N') printf("%d. %s\n", i + 1, s_to_string(p));
+        }
 	char name[20], number[20], assignment;
 	int score;
 	printf("Enter a name> ");
@@ -245,6 +246,7 @@ void sort_record_by_name(STUDENT* p){
         }
 }
 void delete_record_by_name(){
+
 	char name[20];
 	printf("Enter a name > ");
 	scanf("%s", name);

@@ -191,17 +191,22 @@ void s_update(STUDENT* p, char* num,  char a, int s){
 	strcpy(p->number, num);
 	p->assignment=a;
 	p->score=s;
+
+#ifdef DEBUG
+	printf("[DEBUG]%s %s %c %d\n",p->name, p->number, p->assignment, p->score);
+#endif
 }
 
 void s_sort_by_name(STUDENT* a[]){
         STUDENT* temp;
-        int c=0,idx;
+        int c=0, idx;
         for(int i=0;i<MAX_STUDENTS;i++){
                 if(students[i]!=NULL){
                         a[c]=students[i];
-                        c++;
+			c++;
                 }
         }
+
 
         for(int i=0;i<c-1;i++){
 		idx=i;
@@ -215,6 +220,8 @@ void s_sort_by_name(STUDENT* a[]){
         a[i]=a[idx];
         a[idx]=temp;
         }
+
+
 }
 void s_delete(STUDENT* p){
 	int i, index;
@@ -231,5 +238,8 @@ void s_delete(STUDENT* p){
 	free(p);
 	students[index]=NULL;
 	_count--;
-}
 
+#ifdef DEBUG
+	printf("[DEBUG]sCount= %d , _count= %d\n",sCount,_count);
+#endif
+}
