@@ -4,7 +4,7 @@
 #define MAX_STUDENTS 5
 
 typedef struct student{
-        char name[20];  // 학생 이름
+	char name[20];  // 학생 이름
         char number[10]; // 학생 학번
         char assignment; // 과제 제출 여부(Y or N)
         int score; // 과제 점수
@@ -31,4 +31,4 @@ char* s_to_string_stats_save(); //과제 제출 통계를 보고서 파일 저�
 int s_get_submitStudent(STUDENT* a[]);// 과제 제출 학생 배열 만들고 제출 학생수 리턴
 void s_update(STUDENT* p, char* num,  char a, int s);  // 특정 학생의 정보 업데이트
 void s_sort_by_name(STUDENT* a[]); //학생 레코드를 이름으로 정렬한다.
-
+void s_delete(STUDENT* p);     // 특정 학생의 정보를 제거한다

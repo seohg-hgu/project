@@ -216,5 +216,20 @@ void s_sort_by_name(STUDENT* a[]){
         a[idx]=temp;
         }
 }
+void s_delete(STUDENT* p){
+	int i, index;
+	for(i=0;i<MAX_STUDENTS;i++){
+		if(students[i]==p){
+			index=i;
+			if(p->assignment=='Y'){
+				sCount--;
+			}
 
+			break;
+		}
+	}
+	free(p);
+	students[index]=NULL;
+	_count--;
+}
 

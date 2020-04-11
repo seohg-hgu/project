@@ -1,4 +1,3 @@
-//약간의 수정+++
 #include "student.h"
 
 #ifndef DEBUG
@@ -16,12 +15,12 @@ void print_stats();
 void save_reportFile();
 void update_record();
 void sort_record_by_name();
-
+void delete_record_by_name();
 int main(){
         s_init();
         int menu;
         while(1){
-                printf("\nMenu : 1.Create 2.Read 3.list of submit student 4.Update 6.List 7.Search(student number) 8.Sort(by name) 9.load 10.save 12.stats 13.save(report file)  0.Quit > ");
+                printf("\nMenu : 1.Create 2.Read 3.list of submit student 4.Update 5.Delete 6.List 7.Search(student number) 8.Sort(by name) 9.load 10.save 12.stats 13.save(report file)  0.Quit > ");
                 scanf("%d", &menu);
                 printf("\n");
                 switch(menu){
@@ -37,6 +36,9 @@ int main(){
 		case 4:
 			update_record();
 			break;
+		case 5: 
+			 delete_record_by_name();
+			 break;
                 case 6:
                         list_record();
                         break;
@@ -234,3 +236,21 @@ void sort_record_by_name(STUDENT* p){
                 printf("%d. %s\n",i+1,s_to_string(p));
         }
 }
+void delete_record_by_name(){
+	char name[20];
+	printf("Enter a name > ");
+	scanf("%s", name);
+	
+	STUDENT* p=s_search_by_name(name);
+	if(p){
+		s_delete(p);
+		printf("The record is deleted!\n");
+	}else{
+		printf("No such member!\n");
+	}
+}
+
+
+
+
+
