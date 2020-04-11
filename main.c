@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //약간의 수정+++ 
 >>>>>>> f210f9cadce55efc1289e139fd55d8f8ebfd1001
+=======
+
+>>>>>>> 0f0f2d6ded5021efb38f45cc37d3b5480db75707
 #include "student.h"
 
 #ifndef DEBUG
