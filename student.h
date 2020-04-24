@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_STUDENTS 5
+#define MAX_STUDENTS 60
 
 typedef struct student{
 	char name[20];  // 학생 이름
@@ -32,3 +32,6 @@ int s_get_submitStudent(STUDENT* a[]);// 과제 제출 학생 배열 만들고 �
 void s_update(STUDENT* p, char* num,  char a, int s);  // 특정 학생의 정보 업데이트
 void s_sort_by_name(STUDENT* a[]); //학생 레코드를 이름으로 정렬한다.
 void s_delete(STUDENT* p);     // 특정 학생의 정보를 제거한다
+void arrange();//레코드 정렬
+int* s_get_grade();//grade를 결정, 리턴
+void print_debug();//for debug

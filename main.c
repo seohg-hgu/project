@@ -16,11 +16,13 @@ void save_reportFile();
 void update_record();
 void sort_record_by_name();
 void delete_record_by_name();
+void arrange_record();
+
 int main(){
         s_init();
         int menu;
         while(1){
-                printf("\nMenu : 1.Create 2.Read 3.list of submit student 4.Update 5.Delete 6.List 7.Search(student number) 8.Sort(by name) 9.load 10.save 12.stats 13.save(report file)  0.Quit > ");
+                printf("\nMenu : 1.Create 2.Read 3.list of submit student 4.Update 5.Delete 6.List 7.Search(student number) 8.Sort(by name) 9.load 10.save 11.arrange records 12.stats 13.save(report file)  0.Quit > ");
                 scanf("%d", &menu);
                 printf("\n");
                 switch(menu){
@@ -33,23 +35,26 @@ int main(){
                 case 3:
                         read_submitRecord();
                         break;
-		case 4:
-			update_record();
-			break;
-		case 5: 
-			 delete_record_by_name();
-			 break;
+                case 4:
+                        update_record();
+                        break;
+                case 5:
+                         delete_record_by_name();
+                         break;
                 case 6:
                         list_record();
                         break;
                 case 7:
                         search_record_by_number();
                         break;
-		case 8: sort_record_by_name();
-			break;
+                case 8: sort_record_by_name();
+                        break;
                 case 9: load_file();
                         break;
                 case 10: save_file();
+                         break;
+
+                case 11: arrange_record();
                          break;
                 case 12: print_stats();
                          break;
@@ -89,7 +94,6 @@ void create_record(){
         scanf("%d", &score);
         s_create(name, number, assignment, score);
 }
-
 void read_record(){
         char name[20];
         printf("Enter a student name > ");
@@ -192,13 +196,29 @@ void save_file(){
 }
 
 void print_stats(){
+        int *a;
         printf("%d students submitted.\n",s_count_submitStudent());
         printf("score average: %.1lf\n",s_getAveragScore());
+        printf("Grade\n");
+        a=s_get_grade();
+        printf("A: %d명\n",a[0]);
+        printf("B: %d명\n",a[1]);
+        printf("C: %d명\n",a[2]);
+        printf("D: %d명\n",a[3]);
+        printf("E: %d명\n",a[4]);
 }
 
 void save_reportFile(){
+        int *a;
         FILE* f=fopen("students_stats.txt","w");
         fprintf(f, "%s\n", s_to_string_stats_save());
+        fprintf(f,"Grade\n");
+        a=s_get_grade();
+        fprintf(f,"A: %d명\n",a[0]);
+        fprintf(f,"B: %d명\n",a[1]);
+        fprintf(f,"C: %d명\n",a[2]);
+        fprintf(f,"D: %d명\n",a[3]);
+        fprintf(f,"E: %d명\n",a[4]);
         fclose(f);
 
 }
@@ -210,28 +230,28 @@ void update_record(){
         s_get_all(records);
         for(int i=0;i<size;i++){
                 STUDENT* p = records[i];
-		if(p->assignment=='N') printf("%d. %s\n", i + 1, s_to_string(p));
+                if(p->assignment=='N') printf("%d. %s\n", i + 1, s_to_string(p));
         }
-	char name[20], number[20], assignment;
-	int score;
-	printf("Enter a name> ");
-	scanf("%s" , name);
+        char name[20], number[20], assignment;
+        int score;
+        printf("Enter a name> ");
+        scanf("%s" , name);
 
-	STUDENT *p=s_search_by_name(name);
-	if(p){
-		printf("Enter a updated info.\n");
-		printf("number > ");
-		scanf("%s",number);
-		printf("assignment submit (Y / N) > ");
-		scanf(" %c", &assignment);
-		printf("score > ");
-		scanf("%d", &score);
-		
-		s_update(p, number, assignment, score);
+        STUDENT *p=s_search_by_name(name);
+        if(p){
+                printf("Enter a updated info.\n");
+                printf("number > ");
+                scanf("%s",number);
+                printf("assignment submit (Y / N) > ");
+                scanf(" %c", &assignment);
+                printf("score > ");
+                scanf("%d", &score);
 
-	}else{
-		printf("No such member!\n");
-	}
+                s_update(p, number, assignment, score);
+
+        }else{
+                printf("No such member!\n");
+        }
 
 
 }
@@ -247,20 +267,24 @@ void sort_record_by_name(STUDENT* p){
 }
 void delete_record_by_name(){
 
-	char name[20];
-	printf("Enter a name > ");
-	scanf("%s", name);
-	
-	STUDENT* p=s_search_by_name(name);
-	if(p){
-		s_delete(p);
-		printf("The record is deleted!\n");
-	}else{
-		printf("No such member!\n");
-	}
+        char name[20];
+        printf("Enter a name > ");
+        scanf("%s", name);
+
+        STUDENT* p=s_search_by_name(name);
+        if(p){
+                s_delete(p);
+                printf("The record is deleted!\n");
+        }else{
+                printf("No such member!\n");
+        }
 }
 
-
-
+void arrange_record(){
+        print_debug();
+        printf("Arrange records\n");
+        arrange();
+        print_debug();
+}
 
 
